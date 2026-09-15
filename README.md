@@ -2,7 +2,7 @@
 
 基于 [immortalwrt/immortalwrt](https://github.com/immortalwrt/immortalwrt) 官方 `v25.12.1` 稳定版源码，通过 GitHub Actions 云编译的 JCG Q30 Pro (512M) 固件。
 
-[![Build ImmortalWrt JCG Q30 Pro (Official 25.12 Stable)](https://github.com/你的用户名/你的仓库名/actions/workflows/build.yml/badge.svg)](https://github.com/你的用户名/你的仓库名/actions/workflows/build.yml)
+[![Build ImmortalWrt JCG Q30 Pro (Official 25.12 Stable)](https://github.com/HubQyz/ImmortalWrt-JCG-Q30-Pro/actions/workflows/build.yml/badge.svg)](https://github.com/HubQyz/ImmortalWrt-JCG-Q30-Pro/actions/workflows/build.yml)
 
 ---
 
@@ -111,6 +111,18 @@
 6. **Wi-Fi**：请刷机后在后台查看或自行设置
 7. **包管理器**：25.12 使用 **apk**，不再是 opkg
 8. **U-Boot 文件**：Release 附件中的 `bl2-mt7981_jcg_q30_SP2_img` 和 `fip-mt7981_jcg_q30_SP2.bin` 来自 [Yuzhii0718/bl-mt798x-dhcpd](https://github.com/Yuzhii0718/bl-mt798x-dhcpd)
+
+---
+
+## 💾 备份文件
+
+本仓库 `backups/` 目录存放了刷机前的关键分区备份：
+
+- `backup_mt7981-jcg_q30_mtd_bl2_bl2_0x0-0x100000_20260813.bin` — BL2 一级引导
+- `backup_mt7981-jcg_q30_mtd_Factory_Factory_0x0-0x200000_20260813.bin` — 出厂数据（含 MAC / 无线校准）
+- `backup_mt7981-jcg_q30_mtd_fip_fip_0x0-0x200000_20260813.bin` — FIP 二级引导（含 U-Boot）
+
+详见 [backups/README.md](./backups/README.md)
 
 ---
 
