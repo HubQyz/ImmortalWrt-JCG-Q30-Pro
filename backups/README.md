@@ -6,16 +6,16 @@
 
 | 文件名 | 类型 | 说明 | 校验值 (SHA256) |
 |---|---|---|---|
-| `jcg-q30-pro-stock-full.bin` | 原厂完整固件 | 编程器/全片备份 | 待补充 |
-| `jcg-q30-pro-stock-uboot.bin` | 原厂 U-Boot | bootloader 备份 | 待补充 |
-| `jcg-q30-pro-partitions.txt` | 分区表 | mtd 分区信息 | 待补充 |
-| `openwrt-config-backup.tar.gz` | 配置备份 | LuCI 系统→备份/恢复 生成 | 待补充 |
+| `backup_mt7981-jcg_q30_mtd_bl2_bl2_0x0-0x100000_20260813.bin` | BL2 分区备份 | 一级引导 (BL2)，偏移 0x0-0x100000，大小 1MB | 待补充 |
+| `backup_mt7981-jcg_q30_mtd_Factory_Factory_0x0-0x200000_20260813.bin` | Factory 分区备份 | 出厂数据分区 (含 MAC、无线校准等)，偏移 0x0-0x200000，大小 2MB | 待补充 |
+| `backup_mt7981-jcg_q30_mtd_fip_fip_0x0-0x200000_20260813.bin` | FIP 分区备份 | 二级引导 (FIP，含 U-Boot)，偏移 0x0-0x200000，大小 2MB | 待补充 |
 
 ## ⚠️ 注意事项
 
-1. **文件大小限制**：GitHub 单文件限制 100MB，仓库建议总大小 1GB 以内。
-   如果完整固件超过 100MB，请勿直接提交，改用网盘或 Git LFS。
-2. **备份来源**：所有备份均从本人设备提取，仅供本人恢复使用。
-3. **校验方法**：
+1. **备份日期**：2026-08-13
+2. **设备型号**：MT7981 / JCG Q30 Pro
+3. **备份方式**：通过 SSH + `dd` 命令从 mtd 分区提取
+4. **文件大小限制**：GitHub 单文件限制 100MB，本目录文件均未超过限制
+5. **校验方法**：
    ```bash
    sha256sum 文件名
