@@ -144,3 +144,33 @@
 ---
 
 ## 📝 目录结构
+├── .config # 编译配置文件（软件包选择 / 目标设备）
+├── build.yml # GitHub Actions 工作流
+├── diy-part2.sh # 自定义编译脚本（可选）
+├── files/ # 自定义文件（覆盖默认配置，可选）
+│ └── etc/
+│ └── uci-defaults/
+│ └── 99-custom-init
+├── uboot-yuzhii/ # U-Boot 文件
+│ ├── bl2-mt7981_jcg_q30_SP2_img
+│ └── fip-mt7981_jcg_q30_SP2.bin
+├── backups/ # 路由器分区备份
+│ ├── README.md
+│ ├── backup_mt7981-jcg_q30_mtd_bl2_bl2_0x0-0x100000_20260813.bin
+│ ├── backup_mt7981-jcg_q30_mtd_Factory_Factory_0x0-0x200000_20260813.bin
+│ └── backup_mt7981-jcg_q30_mtd_fip_fip_0x0-0x200000_20260813.bin
+└── README.md
+
+---
+
+## 🙏 致谢
+
+- [immortalwrt/immortalwrt](https://github.com/immortalwrt/immortalwrt)
+- [sbwml/luci-app-mosdns](https://github.com/sbwml/luci-app-mosdns)
+- [sirpdboy](https://github.com/sirpdboy)
+- [timsaya](https://github.com/timsaya)
+- [linkease](https://github.com/linkease)
+- [destan19/OpenAppFilter](https://github.com/destan19/OpenAppFilter)
+- [jerrykuku](https://github.com/jerrykuku)
+- [BlueSky16st/luci-app-flowlens](https://github.com/BlueSky16st/luci-app-flowlens)
+- [Yuzhii0718/bl-mt798x-dhcpd](https://github.com/Yuzhii0718/bl-mt798x-dhcpd)
