@@ -1,4 +1,4 @@
-name: Build ImmortalWrt RAX3000M NAND (Official 25.12 Stable)
+name: Build ImmortalWrt JCG Q30 Pro (Official 25.12 Stable)
 on:
   workflow_dispatch:
     inputs:
@@ -214,11 +214,11 @@ jobs:
             echo "⚠️ 未找到用户自定义 .config"
             exit 1
           fi
-          # 强制指定目标设备为 RAX3000M
+          # 强制指定目标设备为 JCG Q30 Pro (512M)
           cat >> .config <<EOF
           CONFIG_TARGET_mediatek=y
           CONFIG_TARGET_mediatek_filogic=y
-          CONFIG_TARGET_mediatek_filogic_DEVICE_cmcc_rax3000m=y
+          CONFIG_TARGET_mediatek_filogic_DEVICE_jcg_q30-pro=y
           EOF
           make defconfig
 
@@ -329,11 +329,11 @@ jobs:
           VER_KUCAT=$(get_pkg_ver "luci-theme-kucat")
           VER_ARGON=$(get_pkg_ver "luci-theme-argon")
           cat > release_notes.txt <<EOF
-          ### ImmortalWrt RAX3000M NAND 官方 25.12 稳定版固件
+          ### ImmortalWrt JCG Q30 Pro (512M) 官方 25.12 稳定版固件
           **编译时间**: $(date +"%Y-%m-%d %H:%M:%S")
           **系统版本**: ImmortalWrt $SYSTEM_VER (官方 25.12.1 稳定版)
           **Linux 内核**: $KERNEL_VER
-          **目标设备**: CMCC RAX3000M (MT7981 / NAND 128M)
+          **目标设备**: JCG Q30 Pro (MT7981 / NAND 512M)
           **目标平台**: mediatek/filogic
           **无线驱动**: mt76 开源驱动
           **固件格式**: .itb (FIT image)
@@ -356,7 +356,7 @@ jobs:
           5. **默认密码**: 无 (留空)
           6. **Wi-Fi**: 请刷机后在后台查看或自行设置
           7. **注意**: 25.12 使用 apk 包管理器，不再是 opkg
-          8. **U-Boot 文件**: 附件中的 \`bl2.img\` 和 \`fip.bin\` 来自 [Yuzhii0718/bl-mt798x-dhcpd](https://github.com/Yuzhii0718/bl-mt798x-dhcpd)
+          8. **U-Boot 文件**: 附件中的 \`bl2-mt7981_jcg_q30_SP2_img\` 和 \`fip-mt7981_jcg_q30_SP2.bin\` 来自 [Yuzhii0718/bl-mt798x-dhcpd](https://github.com/Yuzhii0718/bl-mt798x-dhcpd)
           ---
           ### 内置主题
           $THEMES
@@ -394,7 +394,7 @@ jobs:
         uses: actions/upload-artifact@v7
         if: steps.organize.outputs.status == 'success'
         with:
-          name: ImmortalWrt-RAX3000M-NAND-Official-25.12.1-${{ github.run_number }}
+          name: ImmortalWrt-JCG-Q30-Pro-Official-25.12.1-${{ github.run_number }}
           path: |
             ${{ env.FIRMWARE }}/*.itb
             ${{ env.FIRMWARE }}/*.bin
@@ -406,14 +406,14 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: RAX3000M-NAND-Official-25.12.1-${{ github.run_number }}
-          name: ImmortalWrt-RAX3000M-NAND-Official-25.12.1-Build-${{ github.run_number }}
+          tag_name: JCG-Q30-Pro-Official-25.12.1-${{ github.run_number }}
+          name: ImmortalWrt-JCG-Q30-Pro-Official-25.12.1-Build-${{ github.run_number }}
           body_path: openwrt/release_notes.txt
           files: |
             ${{ env.FIRMWARE }}/*.itb
             ${{ env.FIRMWARE }}/*.bin
-            uboot-yuzhii/bl2.img
-            uboot-yuzhii/fip.bin
+            uboot-yuzhii/bl2-mt7981_jcg_q30_SP2_img
+            uboot-yuzhii/fip-mt7981_jcg_q30_SP2.bin
 
       # ★ 清理旧 Release：只保留最近 3 个（含 tag），不依赖第三方 action
       - name: 清理旧 Release (Clean Old Releases)
