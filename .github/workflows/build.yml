@@ -171,7 +171,7 @@ jobs:
           rm -rf feeds/packages/net/mosdns package/feeds/packages/mosdns
           # 验证关键包是否存在
           echo "========== 依赖包验证 =========="
-          REQUIRED_PKGS="luci-app-homeproxy adblock-fast luci-app-adblock-fast luci-i18n-adblock-fast-zh-cn gawk grep sed coreutils-sort luci-app-sqm luci-app-arpbind luci-app-ksmbd luci-theme-kucat luci-app-kucat-config luci-app-netwizard luci-app-partexp luci-app-eqosplus luci-app-bandix bandix luci-app-wechatpush luci-app-autoreboot luci-app-lucky luci-app-ddnsto ddnsto luci-app-mosdns mosdns v2dat luci-theme-argon luci-app-argon-config luci-i18n-argon-config-zh-cn"
+          REQUIRED_PKGS="luci-app-homeproxy adblock-fast luci-app-adblock-fast luci-i18n-adblock-fast-zh-cn gawk grep sed coreutils-sort luci-app-sqm luci-app-arpbind luci-theme-kucat luci-app-kucat-config luci-app-netwizard luci-app-partexp luci-app-eqosplus luci-app-bandix bandix luci-app-wechatpush luci-app-autoreboot luci-app-lucky luci-app-ddnsto ddnsto luci-app-mosdns mosdns v2dat luci-theme-argon luci-app-argon-config luci-i18n-argon-config-zh-cn"
           ./scripts/feeds list > /tmp/feeds-list.txt 2>/dev/null || true
           for pkg in $REQUIRED_PKGS; do
             if [ -n "$(find package -maxdepth 3 -type d -name "$pkg" 2>/dev/null | head -n 1)" ] || grep -rq "Package: $pkg" tmp/info/.files-packageinfo 2>/dev/null; then
@@ -325,7 +325,6 @@ jobs:
           VER_MOSDNS_CORE=$(get_mosdns_core_ver)
           VER_SMARTDNS_LUCI=$(get_pkg_ver "luci-app-smartdns")
           VER_SMARTDNS_CORE=$(get_smartdns_core_ver)
-          VER_KSMBD=$(get_pkg_ver "luci-app-ksmbd")
           VER_KUCAT=$(get_pkg_ver "luci-theme-kucat")
           VER_ARGON=$(get_pkg_ver "luci-theme-argon")
           cat > release_notes.txt <<EOF
@@ -344,7 +343,6 @@ jobs:
           - **AdBlock-Fast**: $VER_ADBLOCK_FAST (LuCI: $VER_ADBLOCK_LUCI)
           - **MosDNS**: $VER_MOSDNS_CORE (LuCI: $VER_MOSDNS_LUCI)
           - **SmartDNS**: $VER_SMARTDNS_CORE (LuCI: $VER_SMARTDNS_LUCI)
-          - **Ksmbd**: $VER_KSMBD
           - **Kucat Theme**: $VER_KUCAT
           - **Argon Theme**: $VER_ARGON
           ---
